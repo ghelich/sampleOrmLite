@@ -1,0 +1,16 @@
+# --table-start--
+dataClass=com.example.sampleormlite.database.sample
+tableName=sample
+# --table-fields-start--
+# --field-start--
+fieldName=Id
+columnName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=Name
+columnName=name
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

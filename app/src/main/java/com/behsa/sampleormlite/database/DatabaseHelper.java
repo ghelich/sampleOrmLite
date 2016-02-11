@@ -69,6 +69,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 	// Create the getDao methods of all database tables to access those from android code.
 	// Insert, delete, read, update everything will be happened through DAOs
 
+	@SuppressWarnings("SpellCheckingInspection")
 	public Dao<sample, Integer> getsampleDao() throws SQLException {
 		if (sampleDao == null) {
 			sampleDao = getDao(sample.class);

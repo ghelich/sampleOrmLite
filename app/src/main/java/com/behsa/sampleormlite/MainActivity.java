@@ -1,6 +1,8 @@
 package com.behsa.sampleormlite;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 import com.behsa.sampleormlite.database.DatabaseHelper;
@@ -27,7 +29,7 @@ public class MainActivity extends Activity {
 
         et = (EditText) findViewById(R.id.editText1);
         Button b = (Button) findViewById(R.id.button1);
-
+        Button search = (Button) findViewById(R.id.button);
         b.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -47,6 +49,32 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
+            }
+        });
+        search.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<sample> search;
+                Dao<sample, Integer> queryBiuldDao;
+                try {
+                queryBiuldDao = getHelper().getsampleDao();
+                    sample s= new sample();
+                    s.Name = et.getText().toString().trim();
+                    //search = queryBiuldDao.queryForAll();
+                    search = queryBiuldDao.queryBuilder().where().eq("name", et.getText().toString().trim()).query();
+                    String  result = null;
+                    for (sample sa: search) {
+                        result = sa.Name + "\n";
+                    }
+                    if(result!= null){
+                        Toast.makeText(MainActivity.this,result,Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(MainActivity.this,"not found",Toast.LENGTH_LONG).show();
+                    }
+            } catch (SQLException e) {
+                Toast.makeText(MainActivity.this, "Error in insert", Toast.LENGTH_SHORT).show();
+                e.printStackTrace();
+            }
             }
         });
 
